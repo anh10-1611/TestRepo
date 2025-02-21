@@ -18,12 +18,8 @@ int sumUp(vector<int> fTree, int b, int e);
 //This is the function to printout all elements in the tree
 void display(vector<int> fTree);
 
-void menu() {
-	cout << "1: Find the sum of (0, n)\n";
-	cout << "2: Find the sum of (m, n)\n";
-	cout << "0: Exit program!\n";
-	cout << "Please select your program!\n";
-}
+//This is the function to display the menu
+void menu();
 
 int main() {
 	int n;
@@ -116,7 +112,15 @@ int sumUp(vector<int> fTree, int b, int e) {
 
 //This is the function to printout all elements in the tree
 void display(vector<int> fTree) {
-	for (int i = 1; i < fTree.size(); i++) {
+	for (int i = 0; i < fTree.size(); i++) {
 		cout << "Index[" << i << "]= " << fTree[i] << "\n";
 	}
+}
+
+//This is the function to display the menu
+void menu() {
+	cout << "1: Find the sum of (0, n)\n";
+	cout << "2: Find the sum of (m, n)\n";
+	cout << "0: Exit program!\n";
+	cout << "Please select your program!\n";
 }
