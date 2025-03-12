@@ -3,22 +3,46 @@
 
 using namespace std;
 
-//This is the function to assign all elements of fwTree to 0 to make it easier to create and adjust
+/// <summary>
+/// This is the function to assign all elements of fwTree to 0 to make it easier to create and adjust
+/// </summary>
+/// <param name="fTree"></param>
 void deploy(vector<int> fTree);
 
-//This is the function to increase elements within the 2's complement method 
+/// <summary>
+/// This is the function to increase elements within the 2's complement method 
+/// </summary>
+/// <param name="fTree"></param>
+/// <param name="i"></param>
+/// <param name="val"></param>
 void increment(vector<int>& fTree, int i, int val);
 
-//This is the function to calculate the sum from element 0 to element N in the initial array
+/// <summary>
+/// This is the function to calculate the sum from element 0 to element N in the initial array
+/// </summary>
+/// <param name="fTree"></param>
+/// <param name="n"></param>
+/// <returns></returns>
 int sumZeroToN(vector<int> fTree, int n);
 
-//This is the function to calculate the sum from element b to element e in the initial array by subtracting sumZeroTo_b-1 from sumZeroTo_e
+/// <summary>
+/// This is the function to calculate the sum from element b to element e in the initial array by subtracting sumZeroTo_b-1 from sumZeroTo_e
+/// </summary>
+/// <param name="fTree"></param>
+/// <param name="b"></param>
+/// <param name="e"></param>
+/// <returns></returns>
 int sumUp(vector<int> fTree, int b, int e);
 
-//This is the function to printout all elements in the tree
+/// <summary>
+/// This is the function to printout all elements in the tree
+/// </summary>
+/// <param name="fTree"></param>
 void display(vector<int> fTree);
 
-//This is the function to display the menu
+/// <summary>
+/// This is the function to display the menu
+/// </summary>
 void menu();
 
 int main() {
@@ -76,48 +100,48 @@ int main() {
 	return 0;
 }
 
-//This is the function to assign all elements of fwTree to 0 to make it easier to create and adjust
+
 void deploy(vector<int> fTree) {
 	for (int i = 0; i < fTree.size(); i++) {
 		fTree[i] = 0;
 	}
 }
 
-//This is the function to increase elements within the 2's complement method 
+
 void increment(vector<int>& fTree, int i, int val) {
 	//We start from 1 instead of 0 so adding 1 to index 
 	i++;
 	while (i < fTree.size()) {
 		fTree[i] += val;
-		//This is increasing index by flipping the bits, and it to the original then add it to the index
+		//This is adding value to the index, then find the next slot that need to add to by flipping the bits
 		i += i & -i;
 	}
 }
 
-//This is the function to calculate the sum from element 0 to element N in the initial array
+
 int sumZeroToN(vector<int> fTree, int n) {
+	n += 1;
 	int sum = 0;
 	while (n >= 1) {
 		sum += fTree[n];
-		//This is decreasing index by flipping the bits, and it to the original then subtract it from the index
 		n -= n & -n;
 	}
 	return sum;
 }
 
-//This is the function to calculate the sum from element b to element e in the initial array by subtracting sumZeroTo_b-1 from sumZeroTo_e
+
 int sumUp(vector<int> fTree, int b, int e) {
 	return sumZeroToN(fTree, e) - sumZeroToN(fTree, b - 1);
 }
 
-//This is the function to printout all elements in the tree
+
 void display(vector<int> fTree) {
 	for (int i = 0; i < fTree.size(); i++) {
 		cout << "Index[" << i << "]= " << fTree[i] << "\n";
 	}
 }
 
-//This is the function to display the menu
+
 void menu() {
 	cout << "1: Find the sum of (0, n)\n";
 	cout << "2: Find the sum of (m, n)\n";
