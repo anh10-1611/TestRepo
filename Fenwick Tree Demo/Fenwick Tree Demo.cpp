@@ -23,7 +23,7 @@ void increment(vector<int>& fTree, int i, int val);
 /// <param name="fTree"></param>
 /// <param name="n"></param>
 /// <returns></returns>
-int sumZeroToN(vector<int> fTree, int n);
+int sumZeroToN(vector<int> fTree, int i);
 
 /// <summary>
 /// This is the function to calculate the sum from element b to element e in the initial array by subtracting sumZeroTo_b-1 from sumZeroTo_e
@@ -109,22 +109,20 @@ void deploy(vector<int> fTree) {
 
 
 void increment(vector<int>& fTree, int i, int val) {
-	//We start from 1 instead of 0 so adding 1 to index 
 	i++;
 	while (i < fTree.size()) {
 		fTree[i] += val;
-		//This is adding value to the index, then find the next slot that need to add to by flipping the bits
 		i += i & -i;
 	}
 }
 
 
-int sumZeroToN(vector<int> fTree, int n) {
-	n += 1;
+int sumZeroToN(vector<int> fTree, int i) {
+	i += 1;
 	int sum = 0;
-	while (n >= 1) {
-		sum += fTree[n];
-		n -= n & -n;
+	while (i >= 1) {
+		sum += fTree[i];
+		i -= i & -i;
 	}
 	return sum;
 }
